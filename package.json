@@ -1,0 +1,37 @@
+{
+	"name": "wasm-heap-manager",
+	"version": "0.1.0",
+	"description": "Provides safe and convenient methods to allocate, read, and write numeric values, strings, and typed arrays, within an ArrayBuffer heap, like the one used within WebAssembly and Emscripten modules.",
+	"author": "Rotem Dan",
+	"license": "MIT",
+	"keywords": [
+		"WebAssembly",
+		"heap manager"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/rotemdan/wasm-heap-manager"
+	},
+	"bugs": {
+		"url": "https://github.com/rotemdan/wasm-heap-manager/issues"
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"main": "./dist/WasmHeapManager.js",
+	"type": "module",
+	"files": [
+		"dist",
+		"src",
+		"tsconfig.json",
+		"LICENSE.md",
+		"README.md"
+	],
+	"scripts": {
+		"test": "node dist/Test.js"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"@types/node": "^22.8.6"
+	}
+}

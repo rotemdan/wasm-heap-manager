@@ -115,8 +115,6 @@ export class WasmHeapManager {
 			ref.write(initialValue)
 		}
 
-		this.registerFinalizerIfEnabled(ref)
-
 		return ref
 	}
 
@@ -149,8 +147,6 @@ export class WasmHeapManager {
 
 			ref.view.set(elements)
 		}
-
-		this.registerFinalizerIfEnabled(ref)
 
 		return ref
 	}
@@ -189,8 +185,6 @@ export class WasmHeapManager {
 			ref.write(initialValue)
 		}
 
-		this.registerFinalizerIfEnabled(ref)
-
 		return ref
 	}
 
@@ -223,8 +217,6 @@ export class WasmHeapManager {
 
 			ref.view.set(elements)
 		}
-
-		this.registerFinalizerIfEnabled(ref)
 
 		return ref
 	}
@@ -269,8 +261,6 @@ export class WasmHeapManager {
 			ref.write(initialValue)
 		}
 
-		this.registerFinalizerIfEnabled(ref)
-
 		return ref
 	}
 
@@ -303,8 +293,6 @@ export class WasmHeapManager {
 
 			ref.view.set(elements)
 		}
-
-		this.registerFinalizerIfEnabled(ref)
 
 		return ref
 	}
@@ -343,8 +331,6 @@ export class WasmHeapManager {
 			ref.write(initialValue)
 		}
 
-		this.registerFinalizerIfEnabled(ref)
-
 		return ref
 	}
 
@@ -380,8 +366,6 @@ export class WasmHeapManager {
 
 			ref.view.set(elements)
 		}
-
-		this.registerFinalizerIfEnabled(ref)
 
 		return ref
 	}
@@ -420,8 +404,6 @@ export class WasmHeapManager {
 			ref.write(initialValue)
 		}
 
-		this.registerFinalizerIfEnabled(ref)
-
 		return ref
 	}
 
@@ -457,8 +439,6 @@ export class WasmHeapManager {
 
 			ref.view.set(elements)
 		}
-
-		this.registerFinalizerIfEnabled(ref)
 
 		return ref
 	}
@@ -497,8 +477,6 @@ export class WasmHeapManager {
 			ref.write(initialValue)
 		}
 
-		this.registerFinalizerIfEnabled(ref)
-
 		return ref
 	}
 
@@ -534,8 +512,6 @@ export class WasmHeapManager {
 
 			ref.view.set(elements)
 		}
-
-		this.registerFinalizerIfEnabled(ref)
 
 		return ref
 	}
@@ -574,8 +550,6 @@ export class WasmHeapManager {
 			ref.write(initialValue)
 		}
 
-		this.registerFinalizerIfEnabled(ref)
-
 		return ref
 	}
 
@@ -611,8 +585,6 @@ export class WasmHeapManager {
 
 			ref.view.set(elements)
 		}
-
-		this.registerFinalizerIfEnabled(ref)
 
 		return ref
 	}
@@ -651,8 +623,6 @@ export class WasmHeapManager {
 			ref.write(initialValue)
 		}
 
-		this.registerFinalizerIfEnabled(ref)
-
 		return ref
 	}
 
@@ -688,8 +658,6 @@ export class WasmHeapManager {
 
 			ref.view.set(elements)
 		}
-
-		this.registerFinalizerIfEnabled(ref)
 
 		return ref
 	}
@@ -728,8 +696,6 @@ export class WasmHeapManager {
 			ref.write(initialValue)
 		}
 
-		this.registerFinalizerIfEnabled(ref)
-
 		return ref
 	}
 
@@ -765,8 +731,6 @@ export class WasmHeapManager {
 
 			ref.view.set(elements)
 		}
-
-		this.registerFinalizerIfEnabled(ref)
 
 		return ref
 	}
@@ -811,8 +775,6 @@ export class WasmHeapManager {
 			ref.write(initialValue)
 		}
 
-		this.registerFinalizerIfEnabled(ref)
-
 		return ref
 	}
 
@@ -848,8 +810,6 @@ export class WasmHeapManager {
 
 			ref.view.set(elements)
 		}
-
-		this.registerFinalizerIfEnabled(ref)
 
 		return ref
 	}
@@ -894,8 +854,6 @@ export class WasmHeapManager {
 			ref.write(initialValue)
 		}
 
-		this.registerFinalizerIfEnabled(ref)
-
 		return ref
 	}
 
@@ -931,8 +889,6 @@ export class WasmHeapManager {
 
 			ref.view.set(elements)
 		}
-
-		this.registerFinalizerIfEnabled(ref)
 
 		return ref
 	}
@@ -975,8 +931,6 @@ export class WasmHeapManager {
 			ref.write(initialValue)
 		}
 
-		this.registerFinalizerIfEnabled(ref)
-
 		return ref
 	}
 
@@ -1012,8 +966,6 @@ export class WasmHeapManager {
 
 			ref.view.set(elements)
 		}
-
-		this.registerFinalizerIfEnabled(ref)
 
 		return ref
 	}
@@ -1052,8 +1004,6 @@ export class WasmHeapManager {
 			ref.write(initialValue)
 		}
 
-		this.registerFinalizerIfEnabled(ref)
-
 		return ref
 	}
 
@@ -1089,8 +1039,6 @@ export class WasmHeapManager {
 
 			ref.view.set(elements)
 		}
-
-		this.registerFinalizerIfEnabled(ref)
 
 		return ref
 	}
@@ -1129,8 +1077,6 @@ export class WasmHeapManager {
 			ref.write(initialValue)
 		}
 
-		this.registerFinalizerIfEnabled(ref)
-
 		return ref
 	}
 
@@ -1166,8 +1112,6 @@ export class WasmHeapManager {
 
 			ref.view.set(elements)
 		}
-
-		this.registerFinalizerIfEnabled(ref)
 
 		return ref
 	}
@@ -1281,8 +1225,6 @@ export class WasmHeapManager {
 			ref.write(value)
 		}
 
-		this.registerFinalizerIfEnabled(ref)
-
 		return ref
 	}
 
@@ -1359,8 +1301,6 @@ export class WasmHeapManager {
 			allocatedElementsView[encodedString.length] = 0
 		}
 
-		this.registerFinalizerIfEnabled(ref)
-
 		return ref
 	}
 
@@ -1428,8 +1368,6 @@ export class WasmHeapManager {
 			ref.write(value)
 		}
 
-		this.registerFinalizerIfEnabled(ref)
-
 		return ref
 	}
 
@@ -1496,8 +1434,6 @@ export class WasmHeapManager {
 
 			ref.write(value)
 		}
-
-		this.registerFinalizerIfEnabled(ref)
 
 		return ref
 	}
@@ -1579,11 +1515,6 @@ export class WasmHeapManager {
 		}
 	}
 
-	private registerFinalizerIfEnabled(ref: HeapRef) {
-		if (this.options.enableGarbageCollection) {
-			this.finalizationRegistry.register(ref, ref.address)
-		}
-	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Manage cached heap views
@@ -3173,13 +3104,11 @@ export type HeapGetterCallback = () => ArrayBuffer
 export interface WasmHeapManagerOptions {
 	clearAllocatedRegions?: boolean
 	pollingMode?: 'always' | 'whenEmpty' | 'never'
-	enableGarbageCollection?: boolean
 }
 
 export const defaultWasmHeapManagerOptions: WasmHeapManagerOptions = {
 	clearAllocatedRegions: true,
 	pollingMode: 'whenEmpty',
-	enableGarbageCollection: false
 }
 
 export const enum DataType {

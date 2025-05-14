@@ -155,7 +155,6 @@ function initWasmHeap() {
 		{
 			clearAllocatedRegions: false,
 			pollingMode: 'whenEmpty',
-			enableGarbageCollection: false
 		}
 	)
 
@@ -172,7 +171,6 @@ function initArrayBufferHeap() {
 		{
 			clearAllocatedRegions: false,
 			pollingMode: 'always',
-			enableGarbageCollection: false
 		}
 	)
 

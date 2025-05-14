@@ -18,7 +18,7 @@ To ensure the `ArrayBuffer` can be grown or replaced when needed, the manager is
 * Efficiently reads, writes, allocates and wraps ASCII, UTF-8, UTF-16 and UTF-32 strings directly on the heap
 * Supports `ArrayBuffer` heaps larger than `4 GiB`, up to `2^53 - 1` bytes, which is about `8192 TiB` (large `ArrayBuffer` support is already available in Node.js 22+ and latest Firefox)
 * Supports `SharedArrayBuffer`. Can be used to efficiently share data between different JavaScript threads
-* Provides optional garbage collection by attaching allocated references to an internal [`FinalizationRegistry`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/FinalizationRegistry/FinalizationRegistry) bound to the JavaScript runtime's garbage collector
+* Supports optional allocation tracking (enabled by default), allowing all heap objects allocated via the manager to be listed or freed in bulk
 * Works on all major JavaScript runtimes, including browsers, Node.js, Deno and Bun
 * Optimized for speed and minimal overhead, while balancing for safety and convenience
 * No dependencies
@@ -407,9 +407,9 @@ Returns the same reference object as the typed array allocation methods.
 
 ## Constructor options
 
-* `clearAllocatedRegions`: always clear a region after it is allocated. Defaults to `true`
-* `pollingMode`: how often the manager would poll the callback to get the latest `ArrayBuffer`. Can be set to `always` (will invoke the callback every time the heap is accessed), `whenEmpty` (will call the callback when the ArrayBuffer has a `byteLength` of 0), or `never` (will never calls the callback - assumes the `ArrayBuffer` is static and never replaced). Defaults to `whenEmpty`, which works with the standard behavior of Emscripten heaps and WASM memory objects. If you are using a custom `ArrayBuffer` object as heap, you may need to set to `always` (in case it's being replaced) or `never` (in case it is static)
-* `enableGarbageCollection`: when `true`, allocated references would be garbage collected when their reference is garbage collected. This applies only to references created using the `allocate..()` methods, not wrapped references. In practice, the JavaScript garbage collector may be invoked very infrequently on some runtimes (like Node.js), which may cause a lot of memory to be held. Defaults to `false`
+* `clearAllocatedRegions`: always zero a heap region after it is allocated. Defaults to `true`
+* `pollingMode`: how often the manager would poll the callback to get the latest `ArrayBuffer`. Can be set to `never` (will never call the callback - assumes the `ArrayBuffer` is static and never replaced), `whenEmpty` (will invoke the callback when the ArrayBuffer has a `byteLength` of 0), or `always` (will invoke the callback every time the heap is accessed). Defaults to `whenEmpty`, which works with the standard behavior of Emscripten heaps and WASM memory objects. If you are using a custom `ArrayBuffer` object as heap, you may need to set to `always` (in case it's being replaced) or `never` (in case it is static)
+* `trackAllocations`: will internally track all heap references created via the manager (not including wrapped heap objects originally allocated externally), and allow to list and free them in bulk. Defaults to `true`
 
 ## Future
 

@@ -62,8 +62,6 @@ export class WasmHeapManager {
 	private cachedHeapFloat32!: Float32Array
 	private cachedHeapFloat64!: Float64Array
 
-	private finalizationRegistry: FinalizationRegistry<number>
-
 	private options: WasmHeapManagerOptions
 
 	constructor(
@@ -73,12 +71,6 @@ export class WasmHeapManager {
 		options?: WasmHeapManagerOptions) {
 
 		this.options = { ...defaultWasmHeapManagerOptions, ...(options || {}) }
-
-		this.finalizationRegistry = new FinalizationRegistry<number>((address) => {
-			this.deallocate(address)
-
-			console.log(`Deallocated at address ${address}`)
-		})
 
 		this.updateCache(heapGetter())
 	}

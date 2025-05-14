@@ -28,7 +28,7 @@ export function wrapEmscriptenModuleHeap(emscriptenModule: any, options?: WasmHe
 		throw new Error(`Couldn't find a '_malloc' method in the Emscripten module. Please ensure it's set to be exported when the Emscripten module is compiled.`)
 	}
 
-	if (!emscriptenModule._malloc) {
+	if (!emscriptenModule._free) {
 		throw new Error(`Couldn't find a '_free' method in the Emscripten module. Please ensure it's set to be exported when the Emscripten module is compiled.`)
 	}
 
@@ -3172,16 +3172,16 @@ export type AllocatorMethod = (size: number) => number
 export type DeallocatorMethod = (address: number) => void
 export type HeapGetterCallback = () => ArrayBuffer
 
-export const defaultWasmHeapManagerOptions: WasmHeapManagerOptions = {
-	clearAllocatedRegions: true,
-	pollingMode: 'whenEmpty',
-	enableGarbageCollection: false
-}
-
 export interface WasmHeapManagerOptions {
 	clearAllocatedRegions?: boolean
 	pollingMode?: 'always' | 'whenEmpty' | 'never'
 	enableGarbageCollection?: boolean
+}
+
+export const defaultWasmHeapManagerOptions: WasmHeapManagerOptions = {
+	clearAllocatedRegions: true,
+	pollingMode: 'whenEmpty',
+	enableGarbageCollection: false
 }
 
 export const enum DataType {

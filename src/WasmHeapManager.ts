@@ -1638,13 +1638,12 @@ export class WasmHeapManager {
 
 		if (pollingMode === 'never') {
 			return
-		} else if (pollingMode === 'whenEmpty') {
-			if (this.cachedHeap.byteLength === 0) {
-				const newHeap = this.heapGetter()
+		}
 
-				this.setCachedHeap(newHeap)
-			}
-		} else if (pollingMode === 'always') {
+		if (
+			(pollingMode === 'whenEmpty' && this.cachedHeap.byteLength === 0) ||
+			pollingMode === 'always') {
+
 			const newHeap = this.heapGetter()
 
 			if (newHeap !== this.cachedHeap) {

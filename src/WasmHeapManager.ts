@@ -62,8 +62,6 @@ export class WasmHeapManager {
 	private cachedHeapFloat32!: Float32Array
 	private cachedHeapFloat64!: Float64Array
 
-	private ieee754Converter = new IEEE754Converter()
-
 	private finalizationRegistry: FinalizationRegistry<number>
 
 	private options: WasmHeapManagerOptions
@@ -788,7 +786,7 @@ export class WasmHeapManager {
 
 	readFloat32Atomic(address: number) {
 		const uint32Value = this.readUint32Atomic(address)
-		const float32Value = this.ieee754Converter.uint32ToFloat32(uint32Value)
+		const float32Value = ieee754Converter.uint32ToFloat32(uint32Value)
 
 		return float32Value
 	}
@@ -799,7 +797,7 @@ export class WasmHeapManager {
 
 	writeFloat32Atomic(address: number, value: number) {
 		const float32Value = value
-		const uint32Value = this.ieee754Converter.float32ToUint32(float32Value)
+		const uint32Value = ieee754Converter.float32ToUint32(float32Value)
 
 		this.writeUint32Atomic(address, uint32Value)
 	}
@@ -871,7 +869,7 @@ export class WasmHeapManager {
 
 	readFloat64Atomic(address: number) {
 		const bitUint64Value = this.readBigUint64Atomic(address)
-		const float64Value = this.ieee754Converter.bigUint64ToFloat64(bitUint64Value)
+		const float64Value = ieee754Converter.bigUint64ToFloat64(bitUint64Value)
 
 		return float64Value
 	}
@@ -882,7 +880,7 @@ export class WasmHeapManager {
 
 	writeFloat64Atomic(address: number, value: number) {
 		const float64Value = value
-		const bigUint64Value = this.ieee754Converter.float64ToBigUint64(float64Value)
+		const bigUint64Value = ieee754Converter.float64ToBigUint64(float64Value)
 
 		this.writeBigUint64Atomic(address, bigUint64Value)
 	}
@@ -3213,3 +3211,5 @@ export const enum DataType {
 	Pointer32Array,
 	Pointer64Array,
 }
+
+const ieee754Converter = new IEEE754Converter()

@@ -64,6 +64,8 @@ export class WasmHeapManager {
 
 	private options: WasmHeapManagerOptions
 
+	private allocatedHeapRefsSet = new Set<HeapRef>()
+
 	constructor(
 		public readonly heapGetter: HeapGetterCallback,
 		public readonly allocate: AllocatorMethod,
@@ -107,6 +109,8 @@ export class WasmHeapManager {
 			ref.write(initialValue)
 		}
 
+		this.registerHeapRefIfNeeded(ref)
+
 		return ref
 	}
 
@@ -139,6 +143,8 @@ export class WasmHeapManager {
 
 			ref.view.set(elements)
 		}
+
+		this.registerHeapRefIfNeeded(ref)
 
 		return ref
 	}
@@ -177,6 +183,8 @@ export class WasmHeapManager {
 			ref.write(initialValue)
 		}
 
+		this.registerHeapRefIfNeeded(ref)
+
 		return ref
 	}
 
@@ -209,6 +217,8 @@ export class WasmHeapManager {
 
 			ref.view.set(elements)
 		}
+
+		this.registerHeapRefIfNeeded(ref)
 
 		return ref
 	}
@@ -253,6 +263,8 @@ export class WasmHeapManager {
 			ref.write(initialValue)
 		}
 
+		this.registerHeapRefIfNeeded(ref)
+
 		return ref
 	}
 
@@ -285,6 +297,8 @@ export class WasmHeapManager {
 
 			ref.view.set(elements)
 		}
+
+		this.registerHeapRefIfNeeded(ref)
 
 		return ref
 	}
@@ -323,6 +337,8 @@ export class WasmHeapManager {
 			ref.write(initialValue)
 		}
 
+		this.registerHeapRefIfNeeded(ref)
+
 		return ref
 	}
 
@@ -358,6 +374,8 @@ export class WasmHeapManager {
 
 			ref.view.set(elements)
 		}
+
+		this.registerHeapRefIfNeeded(ref)
 
 		return ref
 	}
@@ -396,6 +414,8 @@ export class WasmHeapManager {
 			ref.write(initialValue)
 		}
 
+		this.registerHeapRefIfNeeded(ref)
+
 		return ref
 	}
 
@@ -431,6 +451,8 @@ export class WasmHeapManager {
 
 			ref.view.set(elements)
 		}
+
+		this.registerHeapRefIfNeeded(ref)
 
 		return ref
 	}
@@ -469,6 +491,8 @@ export class WasmHeapManager {
 			ref.write(initialValue)
 		}
 
+		this.registerHeapRefIfNeeded(ref)
+
 		return ref
 	}
 
@@ -504,6 +528,8 @@ export class WasmHeapManager {
 
 			ref.view.set(elements)
 		}
+
+		this.registerHeapRefIfNeeded(ref)
 
 		return ref
 	}
@@ -542,6 +568,8 @@ export class WasmHeapManager {
 			ref.write(initialValue)
 		}
 
+		this.registerHeapRefIfNeeded(ref)
+
 		return ref
 	}
 
@@ -577,6 +605,8 @@ export class WasmHeapManager {
 
 			ref.view.set(elements)
 		}
+
+		this.registerHeapRefIfNeeded(ref)
 
 		return ref
 	}
@@ -615,6 +645,8 @@ export class WasmHeapManager {
 			ref.write(initialValue)
 		}
 
+		this.registerHeapRefIfNeeded(ref)
+
 		return ref
 	}
 
@@ -650,6 +682,8 @@ export class WasmHeapManager {
 
 			ref.view.set(elements)
 		}
+
+		this.registerHeapRefIfNeeded(ref)
 
 		return ref
 	}
@@ -688,6 +722,8 @@ export class WasmHeapManager {
 			ref.write(initialValue)
 		}
 
+		this.registerHeapRefIfNeeded(ref)
+
 		return ref
 	}
 
@@ -723,6 +759,8 @@ export class WasmHeapManager {
 
 			ref.view.set(elements)
 		}
+
+		this.registerHeapRefIfNeeded(ref)
 
 		return ref
 	}
@@ -767,6 +805,8 @@ export class WasmHeapManager {
 			ref.write(initialValue)
 		}
 
+		this.registerHeapRefIfNeeded(ref)
+
 		return ref
 	}
 
@@ -802,6 +842,8 @@ export class WasmHeapManager {
 
 			ref.view.set(elements)
 		}
+
+		this.registerHeapRefIfNeeded(ref)
 
 		return ref
 	}
@@ -846,6 +888,8 @@ export class WasmHeapManager {
 			ref.write(initialValue)
 		}
 
+		this.registerHeapRefIfNeeded(ref)
+
 		return ref
 	}
 
@@ -881,6 +925,8 @@ export class WasmHeapManager {
 
 			ref.view.set(elements)
 		}
+
+		this.registerHeapRefIfNeeded(ref)
 
 		return ref
 	}
@@ -923,6 +969,8 @@ export class WasmHeapManager {
 			ref.write(initialValue)
 		}
 
+		this.registerHeapRefIfNeeded(ref)
+
 		return ref
 	}
 
@@ -958,6 +1006,8 @@ export class WasmHeapManager {
 
 			ref.view.set(elements)
 		}
+
+		this.registerHeapRefIfNeeded(ref)
 
 		return ref
 	}
@@ -996,6 +1046,8 @@ export class WasmHeapManager {
 			ref.write(initialValue)
 		}
 
+		this.registerHeapRefIfNeeded(ref)
+
 		return ref
 	}
 
@@ -1031,6 +1083,8 @@ export class WasmHeapManager {
 
 			ref.view.set(elements)
 		}
+
+		this.registerHeapRefIfNeeded(ref)
 
 		return ref
 	}
@@ -1069,6 +1123,8 @@ export class WasmHeapManager {
 			ref.write(initialValue)
 		}
 
+		this.registerHeapRefIfNeeded(ref)
+
 		return ref
 	}
 
@@ -1104,6 +1160,8 @@ export class WasmHeapManager {
 
 			ref.view.set(elements)
 		}
+
+		this.registerHeapRefIfNeeded(ref)
 
 		return ref
 	}
@@ -1217,6 +1275,8 @@ export class WasmHeapManager {
 			ref.write(value)
 		}
 
+		this.registerHeapRefIfNeeded(ref)
+
 		return ref
 	}
 
@@ -1293,6 +1353,8 @@ export class WasmHeapManager {
 			allocatedElementsView[encodedString.length] = 0
 		}
 
+		this.registerHeapRefIfNeeded(ref)
+
 		return ref
 	}
 
@@ -1359,6 +1421,8 @@ export class WasmHeapManager {
 
 			ref.write(value)
 		}
+
+		this.registerHeapRefIfNeeded(ref)
 
 		return ref
 	}
@@ -1427,6 +1491,8 @@ export class WasmHeapManager {
 			ref.write(value)
 		}
 
+		this.registerHeapRefIfNeeded(ref)
+
 		return ref
 	}
 
@@ -1489,6 +1555,10 @@ export class WasmHeapManager {
 	free(heapReference: HeapRef): void
 	free(addressOrHeapReference: number | HeapRef) {
 		if (isNumber(addressOrHeapReference)) {
+			if (addressOrHeapReference === 0) {
+				return
+			}
+
 			const address = addressOrHeapReference
 
 			this.deallocate(address)
@@ -1501,12 +1571,45 @@ export class WasmHeapManager {
 
 			this.deallocate(heapReference.address)
 
+			this.unregisterHeapRefIfNeeded(heapReference)
+
 			heapReference.address = 0
 		} else {
 			throw new TypeError(`Invalid argument type`)
 		}
 	}
 
+	freeAll() {
+		if (!this.options.trackAllocations) {
+			throw new Error(`The 'freeAll' method requires 'trackAllocations' option to be set to true`)
+		}
+
+		for (const heapRef of this.allocatedHeapRefsSet) {
+			heapRef.free()
+
+			this.allocatedHeapRefsSet.delete(heapRef)
+		}
+	}
+
+	get allocatedHeapRefs() {
+		if (!this.options.trackAllocations) {
+			throw new Error(`The 'allocatedHeapRefs' property requires the 'trackAllocations' option to be set to true`)
+		}
+
+		return [...this.allocatedHeapRefsSet.values()]
+	}
+
+	private registerHeapRefIfNeeded(heapReference: HeapRef) {
+		if (this.options.trackAllocations) {
+			this.allocatedHeapRefsSet.add(heapReference)
+		}
+	}
+
+	private unregisterHeapRefIfNeeded(heapReference: HeapRef) {
+		if (this.options.trackAllocations) {
+			this.allocatedHeapRefsSet.delete(heapReference)
+		}
+	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Manage cached heap views
@@ -3095,12 +3198,14 @@ export type HeapGetterCallback = () => ArrayBuffer
 
 export interface WasmHeapManagerOptions {
 	clearAllocatedRegions?: boolean
-	pollingMode?: 'always' | 'whenEmpty' | 'never'
+	pollingMode?: 'never' | 'whenEmpty' | 'always'
+	trackAllocations?: boolean
 }
 
 export const defaultWasmHeapManagerOptions: WasmHeapManagerOptions = {
 	clearAllocatedRegions: true,
 	pollingMode: 'whenEmpty',
+	trackAllocations: true,
 }
 
 export const enum DataType {

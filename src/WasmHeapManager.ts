@@ -1283,7 +1283,7 @@ export class WasmHeapManager {
 
 	wrapNullTerminatedAsciiString(address: number, maxElementCount?: number) {
 		if (maxElementCount == null) {
-			maxElementCount = this.getElementCountOfNullTerminatedString(address, 1)
+			maxElementCount = this.getElementCountOfNullTerminatedString(address, 1) + 1
 		}
 
 		const ref = new NullTerminatedAsciiStringRef(address, maxElementCount, this)
@@ -1361,7 +1361,7 @@ export class WasmHeapManager {
 
 	wrapNullTerminatedUtf8String(address: number, maxElementCount?: number) {
 		if (maxElementCount == null) {
-			maxElementCount = this.getElementCountOfNullTerminatedString(address, 1)
+			maxElementCount = this.getElementCountOfNullTerminatedString(address, 1) + 1
 		}
 
 		const ref = new NullTerminatedUtf8StringRef(address, maxElementCount, this)
@@ -1430,7 +1430,7 @@ export class WasmHeapManager {
 
 	wrapNullTerminatedUtf16String(address: number, maxElementCount?: number) {
 		if (maxElementCount == null) {
-			maxElementCount = this.getElementCountOfNullTerminatedString(address, 2)
+			maxElementCount = this.getElementCountOfNullTerminatedString(address, 2) + 1
 		}
 
 		const ref = new NullTerminatedUtf16StringRef(address, maxElementCount, this)
@@ -1499,7 +1499,7 @@ export class WasmHeapManager {
 
 	wrapNullTerminatedUtf32String(address: number, maxElementCount?: number) {
 		if (maxElementCount == null) {
-			maxElementCount = this.getElementCountOfNullTerminatedString(address, 4)
+			maxElementCount = this.getElementCountOfNullTerminatedString(address, 4) + 1
 		}
 
 		const ref = new NullTerminatedUtf32StringRef(address, maxElementCount, this)

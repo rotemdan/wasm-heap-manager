@@ -74,7 +74,8 @@ export class WasmHeapManager {
 
 		this.options = { ...defaultWasmHeapManagerOptions, ...(options || {}) }
 
-		this.updateCache(heapGetter())
+		const heap = heapGetter()
+		this.setCachedHeap(heap)
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1635,19 +1636,24 @@ export class WasmHeapManager {
 	private updateCacheIfNeeded() {
 		const pollingMode = this.options.pollingMode
 
-		if ((pollingMode === 'never') ||
-			(pollingMode === 'whenEmpty' && this.cachedHeap.byteLength > 0)) {
+		if (pollingMode === 'never') {
 			return
-		}
+		} else if (pollingMode === 'whenEmpty') {
+			if (this.cachedHeap.byteLength === 0) {
+				const newHeap = this.heapGetter()
 
-		const newHeap = this.heapGetter()
+				this.setCachedHeap(newHeap)
+			}
+		} else if (pollingMode === 'always') {
+			const newHeap = this.heapGetter()
 
-		if (newHeap.byteLength > 0) {
-			this.updateCache(newHeap)
+			if (newHeap !== this.cachedHeap) {
+				this.setCachedHeap(newHeap)
+			}
 		}
 	}
 
-	private updateCache(newHeap: ArrayBuffer | SharedArrayBuffer) {
+	private setCachedHeap(newHeap: ArrayBuffer | SharedArrayBuffer) {
 		this.cachedHeap = newHeap
 
 		this.cachedHeapInt8 = new Int8Array(newHeap)

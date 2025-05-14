@@ -17,19 +17,19 @@ export function createWasmHeapManager(
 
 export function wrapEmscriptenModuleHeap(emscriptenModule: any, options?: WasmHeapManagerOptions) {
 	if (typeof emscriptenModule !== 'object') {
-		throw new Error(`The given Emscripten module is undefined, null, or not an object`)
+		throw new Error(`The given Emscripten module is undefined, null, or not an object.`)
 	}
 
 	if (!emscriptenModule.HEAPU8) {
-		throw new Error(`Couldn't find a 'HEAPU8' property in the given Emscripten module.`)
+		throw new Error(`Couldn't find a 'HEAPU8' property in the given Emscripten module. Please ensure it's set to be exported when the Emscripten module is built.`)
 	}
 
 	if (!emscriptenModule._malloc) {
-		throw new Error(`Couldn't find a '_malloc' method in the Emscripten module. Please ensure it's set to be exported when the Emscripten module is compiled.`)
+		throw new Error(`Couldn't find a '_malloc' method in the Emscripten module. Please ensure it's set to be exported when the Emscripten module is built.`)
 	}
 
 	if (!emscriptenModule._free) {
-		throw new Error(`Couldn't find a '_free' method in the Emscripten module. Please ensure it's set to be exported when the Emscripten module is compiled.`)
+		throw new Error(`Couldn't find a '_free' method in the Emscripten module. Please ensure it's set to be exported when the Emscripten module is built.`)
 	}
 
 	return new WasmHeapManager(
@@ -1386,7 +1386,7 @@ export class WasmHeapManager {
 		const stringElementCount = value.length
 
 		if (maxElementCount && stringElementCount + 1 > maxElementCount) {
-			throw new Error(`String of length ${stringElementCount} can't fit in maximum element count of ${maxElementCount}`)
+			throw new Error(`String of length ${stringElementCount} can't fit in maximum element count of ${maxElementCount}.`)
 		}
 
 		const addressAsIndex = address / 2
@@ -1455,7 +1455,7 @@ export class WasmHeapManager {
 		const stringElementCount = value.length
 
 		if (maxElementCount && stringElementCount + 1 > maxElementCount) {
-			throw new Error(`String of length ${stringElementCount} can't fit in maximum element count of ${maxElementCount}`)
+			throw new Error(`String of length ${stringElementCount} can't fit in maximum element count of ${maxElementCount}.`)
 		}
 
 		const addressAsIndex = address / 4
@@ -1532,7 +1532,7 @@ export class WasmHeapManager {
 		const result = memoryRegionToScan.indexOf(0)
 
 		if (result === -1) {
-			throw new Error(`Couldn't find a null terminator byte in the given memory region`)
+			throw new Error(`Couldn't find a null terminator byte in the given memory region.`)
 		}
 
 		return result
@@ -1581,7 +1581,7 @@ export class WasmHeapManager {
 
 	freeAll() {
 		if (!this.options.trackAllocations) {
-			throw new Error(`The 'freeAll' method requires 'trackAllocations' option to be set to true`)
+			throw new Error(`The 'freeAll' method requires the 'trackAllocations' option to be set to true.`)
 		}
 
 		for (const heapRef of this.allocatedHeapRefsSet) {
@@ -1593,10 +1593,28 @@ export class WasmHeapManager {
 
 	get allocatedHeapRefs() {
 		if (!this.options.trackAllocations) {
-			throw new Error(`The 'allocatedHeapRefs' property requires the 'trackAllocations' option to be set to true`)
+			throw new Error(`The 'allocatedHeapRefs' property requires the 'trackAllocations' option to be set to true.`)
 		}
 
 		return [...this.allocatedHeapRefsSet.values()]
+	}
+
+	get totalAllocatedByteCount() {
+		if (!this.options.trackAllocations) {
+			throw new Error(`The 'totalAllocatedBytes' property requires the 'trackAllocations' option to be set to true.`)
+		}
+
+		let totalBytes = 0
+
+		for (const heapRef of this.allocatedHeapRefsSet) {
+			if (heapRef.isFreed) {
+				continue
+			}
+
+			totalBytes += heapRef.allocatedByteCount
+		}
+
+		return totalBytes
 	}
 
 	private registerHeapRefIfNeeded(heapReference: HeapRef) {
@@ -1745,14 +1763,18 @@ abstract class HeapRef {
 	}
 
 	get isFreed() {
-		return this.address === 0
+		return this.address <= 0
+	}
+
+	get isNotFreed() {
+		return this.address > 0
 	}
 
 	abstract allocatedByteCount: number
 
 	protected assertNotFreed() {
 		if (this.isFreed) {
-			throw new Error('Attempt to read a freed WASM heap reference.')
+			throw new Error('Attempted to read a freed WASM heap reference.')
 		}
 	}
 }

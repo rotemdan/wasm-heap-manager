@@ -1,6 +1,6 @@
 {
 	"name": "wasm-heap-manager",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"description": "Provides safe and convenient methods to allocate, read, and write numeric values, strings, and typed arrays, within an ArrayBuffer heap, like the one used within WebAssembly and Emscripten modules.",
 	"author": "Rotem Dan",
 	"license": "MIT",
